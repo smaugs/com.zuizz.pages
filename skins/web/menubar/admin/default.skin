@@ -1,0 +1,42 @@
+<div>
+	<a href="/desktop/" rel="home" class="title"><img
+		src="{'29/zu_home.png'|ZU_static:icon}" title="home" />Home</a>
+	<ul>
+		<li><a href="/desktop/login.html?ZU_logout=1" rel="logout">Logout</a></li>
+		<li><a href="/desktop/" rel="settings">Settings</a></li>
+	</ul>
+</div>
+
+<div>
+	<a href="/desktop/" rel="home" class="title"><img
+		src="{'29/zu_email.png'|ZU_static:icon}" title="home" />Home</a>
+	<ul>
+		<li><a href="/desktop/login.html?ZU_logout=1" rel="logout">Logout</a></li>
+		<li><a href="/desktop/" rel="settings">Settings</a></li>
+		<li><a href="/desktop/" rel="settings">Settings</a></li>
+	</ul>
+</div>
+<div>
+	<a href="/desktop/" rel="home" class="title"><img
+		src="{'29/zu_folder.png'|ZU_static:icon}" title="home" />Demo With Superlongtitle</a>
+	<ul>
+		<li><a href="/desktop/login.html?ZU_logout=1" rel="logout">Logout</a></li>
+		<li><a href="/desktop/" rel="settings">Settings</a></li>
+	</ul>
+</div>
+
+
+{foreach name="main" from=$ZU_feature.data.structured.1 item="level" key="node"}
+<div>
+	<a href="/desktop/{$ZU_feature.data.data[$node].route}"
+		rel="{$ZU_feature.data.data[$node].nav_title}" class="title"><img
+		src="{'big/'|cat:$ZU_feature.data.data[$node].icon|ZU_static:icon}" title="{$ZU_feature.data.data[$node].page_title}" />{$ZU_feature.data.data[$node].page_title}</a>
+	{if $ZU_feature.data.flat[$node].subs > 0}
+	<ul>{foreach name="subs" from=$ZU_feature.data.structured[$node] item="sublevel" key="subnode"}
+		<li><a href="/desktop/{$ZU_feature.data.data[$subnode].route}" rel="{$ZU_feature.data.data[$subnode].nav_title}">{$ZU_feature.data.data[$subnode].page_title}</a></li>
+		{/foreach}
+	</ul>
+	{/if}
+
+</div>
+{/foreach}

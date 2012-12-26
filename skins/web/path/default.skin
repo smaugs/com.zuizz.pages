@@ -1,0 +1,13 @@
+<ul id="breadcrumbs" class="xbreadcrumbs">
+     <li>
+          <a href="#Home" class="home">Home</a>
+
+     </li>
+     <li>
+          <a href="#Netzwerk">Netzwerk</a>
+
+     </li>
+     <li class="current">
+          <a href="#">Extranet Anbindung</a>
+     </li>
+</ul>

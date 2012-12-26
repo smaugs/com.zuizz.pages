@@ -1,0 +1,43 @@
+<div class="navbar navbar-fixed-top {"navigation"|Tc}">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#">ZUIZZ</a>
+            <ul class="nav">
+            {foreach from=$ZU_feature.data.tree_structure[$ZU_feature.data.tree_start].subs key="NODE" item="is_active"}{if $is_active}
+                    {if $ZU_feature.data.tree[$NODE].no_active_subs}
+                        <li class="{if $ZU_feature.data.tree[$NODE].in_path} active{/if}">
+                            <a href="/{$ZU_feature.data.tree[$NODE].route}">{if $ZU_feature.data.tree[$NODE].icon !=""} <i class="{$ZU_feature.data.tree[$NODE].icon} icon-white"></i>{/if} {$ZU_feature.data.tree[$NODE].nav_title}</a>
+                        </li>
+                    {else}
+                    <li class="dropdown{if $ZU_feature.data.tree[$NODE].in_path} active{/if}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{if $ZU_feature.data.tree[$NODE].icon !=""} <i class="{$ZU_feature.data.tree[$NODE].icon} icon-white"></i>{/if} {$ZU_feature.data.tree[$NODE].nav_title} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                        <li {if $ZU_feature.data.tree[$NODE].selected} class="active"{/if}><a href="/{$ZU_feature.data.tree[$NODE].route}">{if $ZU_feature.data.tree[$NODE].icon !=""}<i class="{$ZU_feature.data.tree[$NODE].icon}"></i>{/if} {$ZU_feature.data.tree[$NODE].nav_title}</a> </li>
+
+                            {foreach from=$ZU_feature.data.tree_structure[$ZU_feature.data.tree[$NODE].id].subs key="SUBNODE" item="sub_is_active" name="SUBMENU"}
+                                {if $sub_is_active}
+                                    <li class="divider"></li>
+                                    <li {if $ZU_feature.data.tree[$SUBNODE].in_path} class="active"{/if}><a href="/{$ZU_feature.data.tree[$SUBNODE].route}">{if $ZU_feature.data.tree[$SUBNODE].icon !=""}<i class="{$ZU_feature.data.tree[$SUBNODE].icon}"></i>{/if} {$ZU_feature.data.tree[$SUBNODE].nav_title}</a></li>
+                                {/if}
+                              {/foreach}
+                        </ul>
+                    </li>
+                    {/if}
+                {/if}{/foreach}
+            </ul>
+
+            <ul class="nav pull-right">
+                <li id="fat-menu" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/adm/index.html">Settings</a></li>
+                        <li><a href="/dev/apidoc.html">Developer Tools</a></li>
+                        <li class="divider"></li>
+                        <li class="logout"><a href="#"><i class="icon-off"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
