@@ -2,7 +2,7 @@
     /**
      * Navigation module implementation.
      *
-     * @author Florian Gaechter
+     * @author Florian Gaechter, Veith Zäch
      * @namespace Tc.Module
      * @class Navigation
      * @extends Tc.Module
