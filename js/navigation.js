@@ -22,7 +22,8 @@
             $('a',$ctx).click(function(){
                 var target = $(this).data('target');
                 if(target != undefined){
-                    window.location(target);
+
+                    window.location = target;
                     return false;
                 }
 
