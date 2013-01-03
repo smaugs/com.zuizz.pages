@@ -14,6 +14,17 @@
         init: function ($ctx, sandbox, modId) {
             // call base constructor
             this._super($ctx, sandbox, modId);
+
+            $('.dropdown-toggle',$ctx).dropdown() ;
+
+            $('a',$ctx).click(function(){
+                var target = $(this).data('target');
+                if(target != undefined){
+                    window.location(target);
+                    return false;
+                }
+
+            });
         },
 
         on: function (callback) {
