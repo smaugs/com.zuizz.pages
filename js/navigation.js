@@ -15,8 +15,10 @@
             // call base constructor
             this._super($ctx, sandbox, modId);
 
+            // dropdown aktivieren
             $('.dropdown-toggle',$ctx).dropdown() ;
 
+            // wenn targets definiert sind, über diese per js navigieren (ios)
             $('a',$ctx).click(function(){
                 var target = $(this).data('target');
                 if(target != undefined){
