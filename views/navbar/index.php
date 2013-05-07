@@ -5,7 +5,8 @@ $current_page = $GLOBALS['page']['page_id'];
 
 $this->data['navtitle'] = $GLOBALS['page']['nav_title'];
 
-$fulltree = ORM::for_table('pages_tree')->raw_query("SELECT d.page_title,
+$fulltree = ORM::for_table('pages_tree')->raw_query("
+SELECT d.page_title,
 	p.root,
 	p.active,
 	p.type,
@@ -20,8 +21,8 @@ WHERE h.page_id = :page_id
 AND p.lft > h.lft
 AND p.rgt < h.rgt
 and p.root = h.root
-
 ORDER by p.lft ASC", array('page_id'=> $page))->find_array();
+
 
 $level     = 1;
 $lright[1] = $fulltree[0]['rgt'];
