@@ -16,32 +16,37 @@
             this._super($ctx, sandbox, modId);
 
             // dropdown aktivieren
-            $('.dropdown-toggle',$ctx).dropdown() ;
+            $('.dropdown-toggle', $ctx).dropdown();
 
-            // wenn targets definiert sind, über diese per js navigieren (ios)
-            $('a',$ctx).click(function(){
-                var target = $(this).data('target');
-                if(target != undefined){
 
-                    window.location = target;
-                    return false;
-                }
 
-            });
+            this.registerListener(sandbox);
         },
-
-        on: function (callback) {
+        registerListener: function (sandbox) {
             var $ctx = this.$ctx,
                 self = this;
 
-            self.logoutButton = $('.logout a', $ctx);
+            // wenn targets definiert sind, über diese per js navigieren (ios)
+            $('a', $ctx).click(function () {
+                var target = $(this).data('target-url');
 
+                if (target != undefined) {
+                    window.location = target;
+                    return false;
+                }
+            });
+
+            self.logoutButton = $('.logout a', $ctx);
             self.logoutButton.on('click', function () {
                 $.post('/?ZU_logout=true', function () {
                     window.location = '/';
                 });
                 return false;
             });
+
+        },
+        on: function (callback) {
+
 
             callback();
         }
