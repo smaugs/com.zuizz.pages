@@ -1,6 +1,6 @@
 <?php
 
-$page         = $this->parameter['page'];
+$page = $this->parameter['page'];
 $current_page = $GLOBALS['page']['page_id'];
 
 $this->data['navtitle'] = $GLOBALS['page']['nav_title'];
@@ -21,22 +21,22 @@ AND p.lft > h.lft
 AND p.rgt < h.rgt
 and p.root = h.root
 
-ORDER by p.lft ASC", array('page_id'=> $page))->find_array();
+ORDER by p.lft ASC", array('page_id' => $page))->find_array();
 
-$level     = 1;
+$level = 1;
 $lright[1] = $fulltree[0]['rgt'];
 $lastright = $fulltree[0]['rgt'];
-$pid[1]    = $page;
-$pidlevel  = 1;
+$pid[1] = $page;
+$pidlevel = 1;
 $structure = array();
-$idtree    = array();
+$idtree = array();
 
 foreach ($fulltree as $key => $node) {
     if (!ZU::check_permission(100, $node['id'], 1)) {
         unset($fulltree[$key]);
         unset($node);
     } else {
-        $idtree[$node['id']]            = $node;
+        $idtree[$node['id']] = $node;
         $idtree[$node['id']]['in_path'] = false;
 
 
@@ -52,7 +52,7 @@ foreach ($fulltree as $key => $node) {
             foreach ($lright as $lvl => $rgt) {
                 if ($rgt + 1 == $node['lft']) {
                     $lright[$lvl] = $node['rgt'];
-                    $level        = $lvl;
+                    $level = $lvl;
                     break;
                 }
             }
@@ -60,7 +60,8 @@ foreach ($fulltree as $key => $node) {
 
 
         $idtree[$node['id']]['level'] = $level;
-        $lastright                    = $node['rgt'];
+
+        $lastright = $node['rgt'];
 
         // PIDs
         if ($pidlevel < $level) {
@@ -68,8 +69,8 @@ foreach ($fulltree as $key => $node) {
         }
 
         $idtree[$node['id']]['pid'] = $pid[$level];
-        $pidlevel                   = $level;
-        $lastid                     = $node['id'];
+        $pidlevel = $level;
+        $lastid = $node['id'];
 
         $structure[$idtree[$node['id']]['pid']]['level'] = $idtree[$node['id']]['level'];
         // pages registrieren (mit active und inactive)
@@ -78,6 +79,14 @@ foreach ($fulltree as $key => $node) {
         } else {
             $structure[$idtree[$node['id']]['pid']]['subs'][$node['id']] = false;
         }
+
+
+        if ($node['rgt'] - $node['lft'] == 1) {
+            $idtree[$node['id']]['have_subnodes'] = false;
+        }else{
+            $idtree[$node['id']]['have_subnodes'] = true;
+        }
+
     }
 }
 
@@ -108,9 +117,8 @@ if (isset($idtree[$current_page])) {
     $idtree[$item['id']]['selected'] = true;
 }
 
-
-$this->data['tree']           = $idtree;
-$this->data['tree_start']     = $pid[1];
+$this->data['tree'] = $idtree;
+$this->data['tree_start'] = $pid[1];
 $this->data['tree_structure'] = $structure;
 
 
