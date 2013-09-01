@@ -1,37 +1,27 @@
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="brand span3" name="top" href="#">{$ZU_feature.data.navtitle}</a>
-            <ul class="nav">
-            {foreach from=$ZU_feature.data.tree_structure[$ZU_feature.data.tree_start].subs key="NODE" item="is_active"}
-                {if $is_active}
-                    <li class="dropdown{if $ZU_feature.data.tree[$NODE].in_path} active{/if}">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{if $ZU_feature.data.tree[$NODE].icon !=""} <i class="{$ZU_feature.data.tree[$NODE].icon} icon-white"></i>{/if} {$ZU_feature.data.tree[$NODE].nav_title} <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            {foreach from=$ZU_feature.data.tree_structure[$ZU_feature.data.tree[$NODE].id].subs key="SUBNODE" item="sub_is_active" name="SUBMENU"}
-                                {if $sub_is_active}
-                                    {if !$smarty.foreach.SUBMENU.first}<li class="divider"></li>{/if}
-                                    <li {if $ZU_feature.data.tree[$SUBNODE].in_path} class="active"{/if}><a href="/{$ZU_feature.data.tree[$SUBNODE].route}">{$ZU_feature.data.tree[$SUBNODE].nav_title}</a></li>
-                                {/if}
-                              {/foreach}
-                        </ul>
-                    </li>
-
-                {/if}
-            {/foreach}
-            </ul>
-            <ul class="nav pull-right">
-                <li id="fat-menu" class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/adm/index.html">Administration</a></li>
-                        <li><a href="/dev/apidoc.html">Developer Tools</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><i class="icon-off"></i> Logout</a></li>
-
-                    </ul>
-                </li>
-            </ul>
-        </div>
+<nav class="navbar navbar-default navbar-fixed-top {"navigation"|Tc}">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#"><img src="/media/img/subcon_logo_small.png" alt="Subcon GmbH"></a>
     </div>
-</div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+            {foreach from=$ZU_feature.data.tree_structure[$ZU_feature.data.tree_start].subs key="NODE" item="is_active"}{if $is_active}
+            <li class="{if $ZU_feature.data.tree[$NODE].in_path} active{/if}">
+                <a href="/{$ZU_feature.data.tree[$NODE].route}">{if $ZU_feature.data.tree[$NODE].icon !=""} <i class="{$ZU_feature.data.tree[$NODE].icon} icon-white"></i>{/if} {$ZU_feature.data.tree[$NODE].nav_title}</a>
+            </li>
+            {/if}{/foreach}
+        </ul>
+
+        <ul class="nav navbar-nav pull-right">
+            <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mehr<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/adm/index.html">Settings</a></li>
+                    <li><a href="/dev/apidoc.html">Developer Tools</a></li>
+                    <li class="divider"></li>
+                    <li class="logout"><a href="#"><i class="icon-off"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
