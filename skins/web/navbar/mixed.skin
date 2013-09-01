@@ -1,10 +1,10 @@
 <div class="navbar navbar-fixed-top {"navigation"|Tc}">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" href="#">ZUIZZ</a>
-            <ul class="nav">
+
+        <div class="container ">
+            <a class="navbar-brand" href="#">ZUIZZ</a>
+            <ul class="nav navbar-nav">
             {foreach from=$ZU_feature.data.tree_structure[$ZU_feature.data.tree_start].subs key="NODE" item="is_active"}{if $is_active}
-                    {if $ZU_feature.data.tree[$NODE].no_active_subs}
+                    {if !$ZU_feature.data.tree[$NODE].have_subnodes}
                         <li class="{if $ZU_feature.data.tree[$NODE].in_path} active{/if}">
                             <a href="/{$ZU_feature.data.tree[$NODE].route}">{if $ZU_feature.data.tree[$NODE].icon !=""} <i class="{$ZU_feature.data.tree[$NODE].icon} icon-white"></i>{/if} {$ZU_feature.data.tree[$NODE].nav_title}</a>
                         </li>
@@ -27,6 +27,7 @@
                 {/if}{/foreach}
             </ul>
 
+
             <ul class="nav pull-right">
                 <li id="fat-menu" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<b class="caret"></b></a>
@@ -39,5 +40,5 @@
                 </li>
             </ul>
         </div>
-    </div>
+
 </div>
