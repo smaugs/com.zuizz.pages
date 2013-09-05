@@ -2,6 +2,7 @@
 
 $page = $this->parameter['page'];
 $current_page = $GLOBALS['page']['page_id'];
+$current_lang =
 
 $this->data['navtitle'] = $GLOBALS['page']['nav_title'];
 
@@ -15,13 +16,12 @@ $fulltree = ORM::for_table('pages_tree')->raw_query("SELECT d.page_title,
 	p.rgt,
 	p.page_id id,
 	d.*
-FROM pages_tree h, pages_tree p LEFT JOIN pages_tree_details d ON (d.page_id = p.page_id AND d.lang='de' and d.display_in_nav=1)
+FROM pages_tree h, pages_tree p LEFT JOIN pages_tree_details d ON (d.page_id = p.page_id AND d.lang=:lang AND d.display_in_nav=1)
 WHERE h.page_id = :page_id
 AND p.lft > h.lft
 AND p.rgt < h.rgt
 and p.root = h.root
-
-ORDER by p.lft ASC", array('page_id' => $page))->find_array();
+ORDER by p.lft ASC", array('page_id' => $page, 'lang' => $_SESSION ['ZUIZZ'] ['LANG'] ['interface_lang']))->find_array();
 
 $level = 1;
 $lright[1] = $fulltree[0]['rgt'];
