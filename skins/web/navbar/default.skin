@@ -14,9 +14,11 @@
             {/if}{/foreach}
         </ul>
 
+        {*
         <ul class="nav navbar-nav pull-right">
-            <li class="logout"><a href="#"><i class="icon-off"></i> {$ZU_feature.translations.default['logout']}</a>
+            <li class="logout"><a href="{$smarty.server.REQUEST_URI}?ZU_logout=yes"><i class="icon-off"></i> {$ZU_feature.translations.default['logout']}</a>
             </li>
         </ul>
+        *}
     </div>
 </nav>
