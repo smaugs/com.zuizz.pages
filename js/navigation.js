@@ -39,7 +39,7 @@
             self.logoutButton = $('.logout a', $ctx);
             self.logoutButton.on('click', function () {
                 $.post('/?ZU_logout=true', function () {
-                    window.location = '/';
+                    window.location = '/logout.html';
                 });
                 return false;
             });
