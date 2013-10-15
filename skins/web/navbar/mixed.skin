@@ -1,6 +1,6 @@
 <div class="navbar navbar-fixed-top {"navigation"|Tc}">
 
-        <div class="container ">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">ZUIZZ</a>
             <ul class="nav navbar-nav">
             {foreach from=$ZU_feature.data.tree_structure[$ZU_feature.data.tree_start].subs key="NODE" item="is_active"}{if $is_active}

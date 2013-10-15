@@ -1,0 +1,9 @@
+<div class="navbar navbar-fixed-top {"navigation"|Tc}">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">ZUIZZ</a>
+
+        <ul class="nav navbar-nav pull-right">
+            <li class="logout"><a href="#"><i class="icon-off"></i> Logout</a></li>
+        </ul>
+    </div>
+</div>
